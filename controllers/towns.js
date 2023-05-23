@@ -16,7 +16,7 @@ const updateTown = async (req, res) => {
     const towninfo = {
       town: req.body.town,
     };
-    const response = await connectiondb.getDb().db().collection('contacts').replaceOne({ _id: town_id }, towninfo);
+    const response = await connectiondb.getDb().db().collection('towns').replaceOne({ _id: town_id }, towninfo);
     console.log(response);
     if (response.modifiedCount > 0) {
       res.status(200).json(response);
