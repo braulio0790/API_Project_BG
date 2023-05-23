@@ -12,7 +12,7 @@ const getTowns = async (req, res) => {
 
 //Modify Towns
 const updateTown = async (req, res) => {
-    const town_id = new ObjectId(req.params.id);
+    const town_id = new ObjectId(req.params.town_id);
     const towninfo = {
       town: req.body.town,
     };
