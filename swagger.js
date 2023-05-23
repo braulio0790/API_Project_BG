@@ -6,7 +6,7 @@ const doc = {
     title: 'Pokemon API Project BG',
     description: 'An API that will provide information of the first generation of pokemon in gameboy',
   },
-  host: 'https://pokemon-api-tztm.onrender.com',
+  host: 'pokemon-api-tztm.onrender.com',
   schemes: ['https'],
 };
 //This file contains what is going to be shown in certain parts of the UI swagger testing page
