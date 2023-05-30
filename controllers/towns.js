@@ -1,17 +1,14 @@
 const connectiondb = require('../dbconnection/dbconnection');
 const ObjectId = require('mongodb').ObjectId;
 
-//Get all towns 
-const getTowns = (req, res) => {
-    connectiondb.getDb().db().collection('towns').find()
-    .toArray((err, lists) => {
-      if (err) {
-        res.status(400).json({ message: err });
-      }
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists);
-    });
-  };
+//Get all towns
+const getTowns = async (req, res) => {
+  const result = await connectiondb.getDb().db().collection('towns').find();
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
+};
 
 //Get one town
 const getSingleTown = async (req, res) => {
