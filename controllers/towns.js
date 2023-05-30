@@ -2,9 +2,9 @@ const connectiondb = require('../dbconnection/dbconnection');
 const ObjectId = require('mongodb').ObjectId;
 
 //Get all towns 
-const getTowns = async (req, res) => {
-    const result = await connectiondb.getDb().db().collection('towns').find();
-    result.toArray((err, lists) => {
+const getTowns = (req, res) => {
+    connectiondb.getDb().db().collection('towns').find()
+    .toArray((err, lists) => {
       if (err) {
         res.status(400).json({ message: err });
       }

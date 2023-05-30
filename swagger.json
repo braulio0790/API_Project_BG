@@ -28,7 +28,7 @@
         }
       }
     },
-    "/towns/single": {
+    "/towns/single/{town_id}": {
       "get": {
         "description": "",
         "produces": [
@@ -45,7 +45,7 @@
         }
       }
     },
-    "/towns/insert": {
+    "/towns/insert/{town_id}": {
       "post": {
         "description": "",
         "parameters": [
