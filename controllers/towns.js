@@ -16,9 +16,11 @@ const getTowns = async (req, res) => {
 //Get one town
 const getSingleTown = async (req, res) => {
   if (!ObjectId.isValid(req.params.town_id)) {
-    res.status(400).json('Must use a valid contact id to find a contact.');
+    res.status(400).json('Must use a valid town id to find a contact.');
   }
-  const result = await connectiondb.getDb().db().collection('towns').find({ _id: userId });
+  const town_id = new ObjectId(req.params.town_id);
+
+  const result = await connectiondb.getDb().db().collection('towns').find({ _id: town_id });
   result.toArray((err, lists) => {
     if (err) {
       res.status(400).json({ message: err });
@@ -44,8 +46,12 @@ const insertTown = async (req, res) => {
 
 //Modify Towns
 const updateTown = async (req, res) => {
-    const town_id = new ObjectId(req.params.town_id);
-    const towninfo = {
+  if (!ObjectId.isValid(req.params.town_id)) {
+    res.status(400).json('Must use a valid town id to find a contact.');
+  }
+  const town_id = new ObjectId(req.params.town_id);
+
+  const towninfo = {
       town: req.body.town,
     };
     const response = await connectiondb.getDb().db().collection('towns').replaceOne({ _id: town_id }, towninfo);
@@ -59,7 +65,11 @@ const updateTown = async (req, res) => {
 
 //Delete Towns
 const deleteTown = async (req, res) => {
+  if (!ObjectId.isValid(req.params.town_id)) {
+    res.status(400).json('Must use a valid contact id to delete a contact.');
+  }
   const town_id = new ObjectId(req.params.town_id);
+  
   const response = await connectiondb.getDb().db().collection('towns').deleteOne({ _id: town_id });
   if (response.acknowledged) {
     res.status(204).json(response);
