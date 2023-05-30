@@ -4,7 +4,10 @@ const ObjectId = require('mongodb').ObjectId;
 //Get all towns 
 const getTowns = async (req, res) => {
     const result = await connectiondb.getDb().db().collection('towns').find();
-    result.toArray().then((lists) => {
+    result.toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
     });
@@ -12,9 +15,14 @@ const getTowns = async (req, res) => {
 
 //Get one town
 const getSingleTown = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
+  if (!ObjectId.isValid(req.params.town_id)) {
+    res.status(400).json('Must use a valid contact id to find a contact.');
+  }
   const result = await connectiondb.getDb().db().collection('towns').find({ _id: userId });
-  result.toArray().then((lists) => {
+  result.toArray((err, lists) => {
+    if (err) {
+      res.status(400).json({ message: err });
+    }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
   });
