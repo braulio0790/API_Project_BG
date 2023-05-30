@@ -6,6 +6,8 @@ const swaggerDocument = require('../swagger.json');
 
 router.use('/', require('./swagger'));
 router.get('/towns', towns.getTowns);
-router.post('/towns/update/:town_id', towns.updateTown);
+router.post('/towns/insert', towns.insertTown);
+router.put('/towns/update/:town_id', towns.updateTown);
+router.delete('/towns/delete/:_id', towns.deleteTown);
 
 module.exports = router;

@@ -10,6 +10,20 @@ const getTowns = async (req, res) => {
     });
   };
 
+//Insert Town
+const insertTown = async (req, res) => {
+  const towninfo = {
+    town: req.body.town,
+  };
+  const response = await connectiondb.getDb().db().collection('towns').insertOne(towninfo);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the contact.');
+  }
+};
+
+
 //Modify Towns
 const updateTown = async (req, res) => {
     const town_id = new ObjectId(req.params.town_id);
@@ -25,4 +39,15 @@ const updateTown = async (req, res) => {
     }
   };
 
-  module.exports = { getTowns, updateTown };
+//Delete Towns
+const deleteTown = async (req, res) => {
+  const town_id = new ObjectId(req.params.town_id);
+  const response = await connectiondb.getDb().db().collection('towns').deleteOne({ _id: town_id });
+  if (response.acknowledged) {
+    res.status(200).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the contact.');
+  }
+};
+
+  module.exports = { getTowns, insertTown, updateTown, deleteTown };
