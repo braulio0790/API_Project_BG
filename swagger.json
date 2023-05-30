@@ -25,6 +25,20 @@
         }
       }
     },
+    "/towns/single": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/towns/insert": {
       "post": {
         "description": "",
@@ -76,8 +90,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
@@ -85,20 +99,20 @@
         }
       }
     },
-    "/towns/delete/{_id}": {
+    "/towns/delete/{town_id}": {
       "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "_id",
+            "name": "town_id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"

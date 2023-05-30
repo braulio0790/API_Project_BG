@@ -10,6 +10,16 @@ const getTowns = async (req, res) => {
     });
   };
 
+//Get one town
+const getSingleTown = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const result = await connectiondb.getDb().db().collection('towns').find({ _id: userId });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+
 //Insert Town
 const insertTown = async (req, res) => {
   const towninfo = {
@@ -33,7 +43,7 @@ const updateTown = async (req, res) => {
     const response = await connectiondb.getDb().db().collection('towns').replaceOne({ _id: town_id }, towninfo);
     console.log(response);
     if (response.modifiedCount > 0) {
-      res.status(200).json(response);
+      res.status(204).json(response);
     } else {
       res.status(500).json(response.error || 'Some error occurred while updating the contact.');
     }
@@ -44,10 +54,10 @@ const deleteTown = async (req, res) => {
   const town_id = new ObjectId(req.params.town_id);
   const response = await connectiondb.getDb().db().collection('towns').deleteOne({ _id: town_id });
   if (response.acknowledged) {
-    res.status(200).json(response);
+    res.status(204).json(response);
   } else {
     res.status(500).json(response.error || 'Some error occurred while creating the contact.');
   }
 };
 
-  module.exports = { getTowns, insertTown, updateTown, deleteTown };
+  module.exports = { getTowns, getSingleTown, insertTown, updateTown, deleteTown };
