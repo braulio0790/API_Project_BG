@@ -6,6 +6,8 @@ const doc = {
     title: 'Pokemon API Project BG',
     description: 'An API that will provide information of the first generation of pokemon in gameboy',
   },
+  //host: 'localhost:8080',
+  //schemes: ['http'],
   host: 'pokemon-api-tztm.onrender.com',
   schemes: ['https'],
 };

@@ -1,0 +1,52 @@
+###Local: Get all towns
+GET http://localhost:8080/towns
+
+###Local: Get single town
+GET http://localhost:8080/towns/single/646c43bbc1d9c797c97697f5
+
+###Local: Insert town
+POST http://localhost:8080/towns/insert HTTP/1.1
+content-type: application/json
+
+{
+    "town":"Pueblo Paleta"
+}
+
+###Local: Update contact
+PUT http://localhost:8080/towns/update/6476f953f5944190ad7178b0 HTTP/1.1
+content-type: application/json
+
+{
+    "town":"Pueblo Paletas"
+}
+
+###Local: Delete town
+DELETE http://localhost:8080/towns/delete/6476f953f5944190ad7178b0 HTTP/1.1
+
+
+
+
+###Live: Get all towns
+GET https://pokemon-api-tztm.onrender.com/towns
+
+###Live: Get single town
+GET https://pokemon-api-tztm.onrender.com/towns/single/646c43bbc1d9c797c97697f5
+
+###Live: Insert town
+POST https://pokemon-api-tztm.onrender.com/towns/insert HTTP/1.1
+content-type: application/json
+
+{
+    "town":"Pueblo Paleta"
+}
+
+###Live: Update contact
+PUT https://pokemon-api-tztm.onrender.com/towns/update/6476f953f5944190ad7178b0 HTTP/1.1
+content-type: application/json
+
+{
+    "town":"Pueblo Paletas"
+}
+
+###Live: Delete town
+DELETE https://pokemon-api-tztm.onrender.com/towns/delete/6476f953f5944190ad7178b0 HTTP/1.1

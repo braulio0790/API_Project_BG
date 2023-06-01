@@ -5,6 +5,7 @@
     "description": "An API that will provide information of the first generation of pokemon in gameboy",
     "version": "1.0.0"
   },
+
   "host": "pokemon-api-tztm.onrender.com",
   "basePath": "/",
   "schemes": [
@@ -34,7 +35,14 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "town_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }          
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -45,13 +53,15 @@
         }
       }
     },
-    "/towns/insert/{town_id}": {
+    "/towns/insert/": {
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "town_id",
             "in": "body",
+            "required": true,
+            "type": "string",
             "schema": {
               "type": "object",
               "properties": {
