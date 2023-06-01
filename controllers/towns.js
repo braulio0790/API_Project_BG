@@ -62,6 +62,9 @@ const updateTown = async (req, res) => {
 
 //Delete Towns
 const deleteTown = async (req, res) => {
+  if (!ObjectId.isValid(req.params.town_id)) {
+    res.status(400).json('Must use a valid contact id to find a contact.');
+  }  
   const town_id = new ObjectId(req.params.town_id);
   const response = await connectiondb.getDb().db().collection('towns').deleteOne({ _id: town_id });
   if (response.acknowledged) {
