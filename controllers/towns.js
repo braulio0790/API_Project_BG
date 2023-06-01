@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 //Get all towns
 const getTowns = async (req, res) => {
-  const result = await connectiondb.getDb().db().collection('towns').find();
+  const result = await connectiondb.getDb().db().collection('test').find();
   result.toArray().then((lists) => {
     if (lists.length == 0){
       res.status(400).json('there is no information in the document');
