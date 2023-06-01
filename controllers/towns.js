@@ -44,6 +44,9 @@ const insertTown = async (req, res) => {
 
 //Modify Towns
 const updateTown = async (req, res) => {
+  if (!ObjectId.isValid(req.params.town_id)) {
+    res.status(400).json('Must use a valid contact id to find a contact.');
+  }  
   const town_id = new ObjectId(req.params.town_id);
   const towninfo = {
       town: req.body.town,
