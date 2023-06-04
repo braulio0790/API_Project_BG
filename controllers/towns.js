@@ -4,7 +4,16 @@ const ObjectId = require('mongodb').ObjectId;
 
 //Get all towns
 const getTowns = async (req, res) => {
-  const result = await connectiondb.getDb().db().collection('towns').find();
+  const result = await connectiondb.getDb().db().collection('towns').aggregate([
+    {
+      $lookup: {
+        from: "pokemons",
+        localField: "area_id",
+        foreignField: "area_id",
+        as: "Area Pokemons"
+      }
+    }
+  ]).find();
   result.toArray().then((lists) => {
     if (lists.length == 0){
       res.status(400).json('there is no information in the document');
@@ -21,7 +30,7 @@ const getSingleTown = async (req, res) => {
     res.status(400).json('Must use a valid contact id to find a contact.');
   }
   const town_id = new ObjectId(req.params.town_id);
-  const result = await connectiondb.getDb().db().collection('towns').find({ _id: town_id });
+  const result = await connectiondb.getDb().db().collection('towns').find({_id: town_id });
   result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]);
