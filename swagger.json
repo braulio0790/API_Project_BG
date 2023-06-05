@@ -5,7 +5,6 @@
     "description": "An API that will provide information of the first generation of pokemon in gameboy",
     "version": "1.0.0"
   },
-
   "host": "pokemon-api-tztm.onrender.com",
   "basePath": "/",
   "schemes": [
@@ -41,7 +40,7 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
@@ -53,19 +52,75 @@
         }
       }
     },
-    "/towns/insert/": {
+    "/towns/insert": {
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "town_id",
+            "name": "body",
             "in": "body",
             "required": true,
             "type": "string",
             "schema": {
               "type": "object",
               "properties": {
+                "area_id": {
+                  "example": "any"
+                },
                 "town": {
+                  "example": "any"
+                },
+                "gym": {
+                  "example": "any"
+                },
+                "badge": {
+                  "example": "any"
+                },
+                "enemies": {
+                  "example": "any"
+                },
+                "items": {
+                  "example": "any"
+                },
+                "leader": {
+                  "example": "any"
+                },
+                "mission": {
+                "example": "any"
+              }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/towns/insertpokemons": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "area_id": {
+                  "example": "any"
+                },
+                "pokemons": {
                   "example": "any"
                 }
               }
@@ -75,6 +130,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -98,11 +156,101 @@
             "schema": {
               "type": "object",
               "properties": {
+                "area_id": {
+                  "example": "any"
+                },
                 "town": {
+                  "example": "any"
+                },
+                "gym": {
+                  "example": "any"
+                },
+                "badge": {
+                  "example": "any"
+                },
+                "enemies": {
+                  "example": "any"
+                },
+                "items": {
+                  "example": "any"
+                },
+                "mission": {
+                  "example": "any"
+                },
+                "leader": {
+                "example": "any"
+              }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/towns/updatepokemons/{area_id}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "area_id": {
+                  "example": "any"
+                },
+                "pokemons": {
                   "example": "any"
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/towns/delete/{town_id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "town_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -118,12 +266,12 @@
         }
       }
     },
-    "/towns/delete/{town_id}": {
+    "/towns/delete/{area_id}": {
       "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "town_id",
+            "name": "area_id",
             "in": "path",
             "required": true,
             "type": "string"

@@ -1,8 +1,8 @@
 const validator = require('../helpers/validate');
 
-const saveTown = (req, res, next) => {
+const savePokemons = (req, res, next) => {
   const validationRule = {
-    town: 'required|string'
+    area_id: 'required|string'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
@@ -18,5 +18,5 @@ const saveTown = (req, res, next) => {
 };
 
 module.exports = {
-  saveTown
+  savePokemons
 };
