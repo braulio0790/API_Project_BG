@@ -9,19 +9,55 @@ POST http://localhost:8080/towns/insert HTTP/1.1
 content-type: application/json
 
 {
-    "town":"Pueblo Paleta"
+"town":"Pallet Town",
+"area_id":"d7b09438ac1283c8255d09a1",
+"badge":"none",
+"enemies":"Gary",
+"items":"town map",
+"leader":"Prof. Oaks",
+"mission":"Get first pokemon and go to the next city",
+"gym":"No"
 }
 
-###Local: Update contact
+###Local: Insert Pokemon
+POST http://localhost:8080/towns/insertpokemons HTTP/1.1
+content-type: application/json
+
+{
+"area_id":"d7b09438ac1283c8255d09a1",
+"Pokemons":"Pidgey, Caterpie, Ratata"
+}
+
+###Local: Update town
 PUT http://localhost:8080/towns/update/6476f953f5944190ad7178b0 HTTP/1.1
 content-type: application/json
 
 {
-    "town":"Pueblo Paletas"
+"town":"Pallet Town",
+"area_id":"d7b09438ac1283c8255d09a1",
+"badge":"none",
+"enemies":"Gary",
+"items":"town map",
+"leader":"Prof. Oaks",
+"mission":"Get first pokemon and go to the next city",
+"gym":"No"
+}
+
+###Update: Pokemons
+PUT http://localhost:8080/towns/update/647cff9e9cd54e26505edd9f HTTP/1.1
+content-type: application/json
+
+{
+"area_id":"d7b09438ac1283c8255d09a1",
+"Pokemons":"Pidgey, Caterpie, Ratata"
 }
 
 ###Local: Delete town
 DELETE http://localhost:8080/towns/delete/6476f953f5944190ad7178b0 HTTP/1.1
+
+
+###Local: Delete pokemons
+DELETE http://localhost:8080/towns/delete/647cff9e9cd54e26505edd9f HTTP/1.1
 
 
 
@@ -37,7 +73,23 @@ POST https://pokemon-api-tztm.onrender.com/towns/insert HTTP/1.1
 content-type: application/json
 
 {
-    "town":"Pueblo Paleta"
+"town":"Pallet Town",
+"area_id":"d7b09438ac1283c8255d09a1",
+"badge":"none",
+"enemies":"Gary",
+"items":"town map",
+"leader":"Prof. Oaks",
+"mission":"Get first pokemon and go to the next city",
+"gym":"No"
+}
+
+###Live: Insert Pokemon
+POST https://pokemon-api-tztm.onrender.com/insertpokemons HTTP/1.1
+content-type: application/json
+
+{
+"area_id":"d7b09438ac1283c8255d09a1",
+"Pokemons":"Pidgey, Caterpie, Ratata"
 }
 
 ###Live: Update contact
@@ -45,8 +97,28 @@ PUT https://pokemon-api-tztm.onrender.com/towns/update/6476f953f5944190ad7178b0 
 content-type: application/json
 
 {
-    "town":"Pueblo Paletas"
+"town":"Pallet Town",
+"area_id":"d7b09438ac1283c8255d09a1",
+"badge":"none",
+"enemies":"Gary",
+"items":"town map",
+"leader":"Prof. Oaks",
+"mission":"Get first pokemon and go to the next city",
+"gym":"No"
 }
+
+###Live: Update Pokemons
+PUT http://localhost:8080/towns/update/647cff9e9cd54e26505edd9f HTTP/1.1
+content-type: application/json
+
+{
+"area_id":"d7b09438ac1283c8255d09a1",
+"Pokemons":"Pidgey, Caterpie, Ratata"
+}
+
 
 ###Live: Delete town
 DELETE https://pokemon-api-tztm.onrender.com/towns/delete/6476f953f5944190ad7178b0 HTTP/1.1
+
+###Live: Delete pokemons
+DELETE https://pokemon-api-tztm.onrender.com/towns/delete/647cff9e9cd54e26505edd9f HTTP/1.1
