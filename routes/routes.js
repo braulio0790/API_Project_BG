@@ -16,6 +16,6 @@ router.post('/towns/insertpokemons', requiresAuth(),validationPokemon.savePokemo
 router.put('/towns/update/:town_id', requiresAuth(), validation.saveTown, towns.updateTown);
 router.put('/towns/updatepokemons/:_id', requiresAuth(), validationPokemon.savePokemons, towns.updatePokemons);
 router.delete('/towns/delete/:town_id', requiresAuth(),towns.deleteTown);
-router.delete('/pokemons/delete/:town_id', requiresAuth(),towns.deletePokemons);
+router.delete('/pokemons/delete/:_id', requiresAuth(),towns.deletePokemons);
 
 module.exports = router;
