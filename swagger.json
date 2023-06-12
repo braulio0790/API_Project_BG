@@ -5,15 +5,28 @@
     "description": "An API that will provide information of the first generation of pokemon in gameboy",
     "version": "1.0.0"
   },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "oauth2",
+        "description": "This API uses OAuth 2 with the implicit grant flow.",
+        "flows":{
+          "authorizationUrl": "https://dev-rn1akj46tybns3dr.us.auth0.com/authorize",
+          "scopes": {}
+        }
+      }
+    }
+  },
   "host": "pokemon-api-tztm.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http", "https"
   ],
   "paths": {
     "/towns": {
       "get": {
-        "description": "",
+        "tags": ["Get All Towns"],
+        "description": "To display all the towns and most common pokemons you can find in the area. fields are not required, just click on the try it out button.",
         "produces": [
           "application/json"
         ],
@@ -30,7 +43,8 @@
     },
     "/towns/single/{town_id}": {
       "get": {
-        "description": "",
+        "tags": ["Get Single Town"],
+        "description": "To display one town and area pokemons. use the area id of your interest.",
         "produces": [
           "application/json"
         ],
@@ -54,7 +68,8 @@
     },
     "/towns/insert": {
       "post": {
-        "description": "",
+        "tags": ["Insert A Town"],
+        "description": "To insert a new town and all its attributes. please fill all the fields, especially area id.",
         "parameters": [
           {
             "name": "body",
@@ -102,12 +117,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/towns/insertpokemons": {
       "post": {
-        "description": "",
+        "tags": ["Insert Pokemn Area List"],
+        "description": "Insert a List of Pokemons by Area Id.",
         "parameters": [
           {
             "name": "body",
@@ -137,12 +154,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/towns/update/{town_id}": {
       "put": {
-        "description": "",
+        "tags": ["Update Town Information"],
+        "description": "Update Town Information.",
         "parameters": [
           {
             "name": "town_id",
@@ -197,12 +216,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/towns/updatepokemons/{area_id}": {
       "put": {
-        "description": "",
+        "tags": ["Update A Pokemon List"],
+        "description": "Update A Single Pokemon List",
         "parameters": [
           {
             "name": "area_id",
@@ -239,12 +260,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
     "/towns/delete/{town_id}": {
       "delete": {
-        "description": "",
+        "tags": ["Delete a Town"],
+        "description": "Delete a Town Using the Area Id. Be Careful.",
         "parameters": [
           {
             "name": "town_id",
@@ -263,15 +286,17 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     },
-    "/towns/delete/{area_id}": {
+    "/pokemons/delete/{_id}": {
       "delete": {
-        "description": "",
+        "tags": ["Delete a Pokemon list"],
+        "description": "Delete a Pokemon List Using the Area Id. Be Careful.",
         "parameters": [
           {
-            "name": "area_id",
+            "name": "_id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -287,14 +312,8 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        },
+        "security": [{ "bearerAuth": [] }]
       }
     }
   }

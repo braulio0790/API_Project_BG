@@ -5,11 +5,28 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const conectiondb = require('./dbconnection/dbconnection');
-
-//Allow access to all the files in some folders
+const { auth } = require('express-openid-connect');
+require('dotenv').config();
 
 //Express library as app.
 const app = expressLib();
+
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.SECRET,
+    baseURL: process.env.BASE_URL,
+    clientID: process.env.CLIENT_ID,
+    issuerBaseURL: process.env.ISSUER_BASE_URL
+};
+  
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+  
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
 
 //Prepare
 app.use(cors());

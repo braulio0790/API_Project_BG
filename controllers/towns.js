@@ -141,11 +141,11 @@ const deleteTown = async (req, res) => {
 
 //Delete Pokemons
 const deletePokemons = async (req, res) => {
-  if (!ObjectId.isValid(req.params.area_id)) {
+  if (!ObjectId.isValid(req.params._id)) {
     res.status(400).json('Must use a valid contact id to find a contact.');
   }  
-  const town_id = new ObjectId(req.params.town_id);
-  const response = await connectiondb.getDb().db().collection('pokemons').deleteOne({ area_id: area_id });
+  const _id = new ObjectId(req.params._id);
+  const response = await connectiondb.getDb().db().collection('pokemons').deleteOne({ _id: _id });
   if (response.acknowledged) {
     res.status(204).json(response);
   } else {
