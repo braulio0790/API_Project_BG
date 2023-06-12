@@ -108,7 +108,7 @@ content-type: application/json
 }
 
 ###Live: Update Pokemons
-PUT http://localhost:8080/towns/update/647cff9e9cd54e26505edd9f HTTP/1.1
+PUT https://pokemon-api-tztm.onrender.com/towns/updatepokemons/647cff9e9cd54e26505edd9f HTTP/1.1
 content-type: application/json
 
 {
@@ -121,4 +121,4 @@ content-type: application/json
 DELETE https://pokemon-api-tztm.onrender.com/towns/delete/6476f953f5944190ad7178b0 HTTP/1.1
 
 ###Live: Delete pokemons
-DELETE https://pokemon-api-tztm.onrender.com/towns/delete/647cff9e9cd54e26505edd9f HTTP/1.1
+DELETE https://pokemon-api-tztm.onrender.com/pokemons/delete/647cff9e9cd54e26505edd9f HTTP/1.1
